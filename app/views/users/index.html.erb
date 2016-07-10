@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <body>
+     <% User.all.each do |n|%>
+       <%= n.email %>
+       <% end %>
+       <br>
+    <%= link_to "Create User", new_user_url %>
+  </body>
+</html>

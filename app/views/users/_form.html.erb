@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form action="/users" method="post">
+      <% if user.persisted? %>
+       <input type="hidden" name="_method" value="patch">
+      <% end %>
+      <%= auth_token %>
+
+      <label for="user-email">Email:
+      <input type="text" name="user[email]" value = <%= "#{user.email}" if user.persisted? %>>
+      </label>
+
+      <label for="user-password">Password:
+        <input type="text" name="user[password]">
+      </label>
+
+      <input type="submit"
+      value= <%= if user.persisted?
+                  "Update Account"
+                else
+                  "Create User"
+                end%>>
+    </form>
+  </body>
+</html>

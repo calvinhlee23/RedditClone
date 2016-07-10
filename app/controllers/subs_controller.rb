@@ -1,2 +1,32 @@
 class SubsController < ApplicationController
+    before_action :authorized?, only: [:update]
+    def authorized?
+      unless self.moderator == @current_user
+        flash[:errors] = "you're not authorized to perform this action"
+      end
+    end
+
+    def new
+      render :new
+    end
+
+    def create
+      new_subbie = Sub.new(sub_params)
+      if new_subbie.save
+        redirect_to sub_url(new_subbie)
+      else
+        new_subbie.errors.full_messages
+      end
+    end
+
+    def update
+      subbie = Sub.find_by_id(params[:id])
+      subbie.update!(sub_params)
+      redirect_to sub_url(subbie)
+    end
+
+    private
+    def sub_params
+      params.require(:sub).permit(:title, :description)
+    end
 end
