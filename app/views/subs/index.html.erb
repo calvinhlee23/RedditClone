@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <% Sub.all.each do |sub| %>
+        <li><%= link_to "#{sub.title}", sub_url(sub) %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>

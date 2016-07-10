@@ -1,17 +1,19 @@
 class SubsController < ApplicationController
     before_action :authorized?, only: [:update]
     def authorized?
-      unless self.moderator == @current_user
-        flash[:errors] = "you're not authorized to perform this action"
+      unless self.moderator.id == @current_user.id
+        flash[:errors] = "only moderators are only to modify subs"
       end
     end
 
     def new
+      @sub = Sub.new
       render :new
     end
 
     def create
       new_subbie = Sub.new(sub_params)
+      new_subbie.user_id = @current_user.id
       if new_subbie.save
         redirect_to sub_url(new_subbie)
       else

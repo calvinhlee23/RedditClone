@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <form action="/subs" method="post">
+    <% if sub.persisted? %>
+    <input type="hidden" name="_method" value="patch">
+    <% end %>
+    <%= auth_token %>
+    <label for "subs-title">Title:
+      <input id = "subs-title" type="text"
+      name="sub[title]" value= <%= "#{sub.title}" if sub.persisted? %>>
+    </label>
+
+    <label for="subs-description">Description:
+      <input id = "subs-descriptpion"
+      type="text" name="sub[]"
+      value= <%= "#{sub.description}" if sub.persisted? %>>
+    </label>
+
+    <input type="submit"
+     value= <%= if sub.persisted?
+                "Submit This Sub"
+                else
+                "Update Sub"
+                end%>>
+  </form>
+</html>
