@@ -1,5 +1,6 @@
 class SubsController < ApplicationController
-    before_action :authorized?, only: [:update]
+    before_action :authorized?, only: [:edit, :update]
+    before_action :consequences_of_not_logged_in
     def authorized?
       unless self.moderator.id == @current_user.id
         flash[:errors] = "only moderators are only to modify subs"
@@ -9,6 +10,15 @@ class SubsController < ApplicationController
     def new
       @sub = Sub.new
       render :new
+    end
+
+    def edit
+      @sub = Sub.find_by_id(params[:id])
+      render :edit
+    end
+
+    def show
+      @sub = Sub.find_by_id(params[:id])
     end
 
     def create

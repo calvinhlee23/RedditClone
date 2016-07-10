@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<form action="/session" method="post">
+  <%= auth_token %>
+  <label for="email">Email
+    <input type="text" name="session[email]">
+  </label>
+
+  <label for="password">Password
+    <input type="text" name="session[password]">
+  </label>
+
+  <input type="submit" value="Login">
+</form>
+</html>

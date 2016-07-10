@@ -4,4 +4,11 @@
     <p>
       <%= @sub.description %>
     </p>
+    <h2>Related Posts:</h2>
+    <ol> <% @sub.posts.each do |post| %>
+      <li><%= post.title%><br>
+          <%= post.content %><br>
+          Submitted By: <%= post.author.email%>
+      </li>
+    </ol>
 </html>

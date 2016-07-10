@@ -1,5 +1,5 @@
 class Sub < ActiveRecord::Base
-  validates :title, :description, :moderator_id, presence: true
+  validates :title, :description, :user_id, presence: true
   validates :title, uniqueness: true
 
   belongs_to(
