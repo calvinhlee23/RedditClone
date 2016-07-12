@@ -9,6 +9,9 @@
       <li><%= post.title%><br>
           <%= post.content %><br>
           Submitted By: <%= post.author.email%>
+            <% if @current_user ==  post.author  %>
+              <%= link_to "Edit Post", edit_post_url(post), method: :patch%>
+            <% end %>
           <% end %>
       </li>
     </ol>

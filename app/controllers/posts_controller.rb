@@ -28,13 +28,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = POst.find_by_id(params[:id])
+    @post = Post.find_by_id(params[:id])
     render :edit
   end
 
   private
   def authorized?
-    unless self.author_id == @current_user.id
+    if Post.find_by_id(params[:id]).author_id != current_user.id
       flash[:notice] = "you are not authorized to perform this action"
     end
   end
