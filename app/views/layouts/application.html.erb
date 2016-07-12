@@ -5,10 +5,22 @@
   <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
   <%= csrf_meta_tags %>
+  <%= %>
+  <% if logged_in? %>
+  Hello: <%= @current_user.email %>
+  <br>
+  <%= button_to "Log Out", session_url, method: :delete%>
+  <% else %>
+  <%= link_to "Log In", new_session_url %>
+  <%= link_to "Create a New Account", new_user_url %>
+  <% end %>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <%= yield %>
 </head>
 <body>
 
-<%= yield %>
 
 </body>
 </html>
