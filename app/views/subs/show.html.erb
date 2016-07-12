@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <h1> <%= @sub.title %></h1>
+    <h1> <%= @sub.title %>
+    <%= link_to "edit", edit_sub_url %>
+  </h1>
     <p>
       <%= @sub.description %>
     </p>

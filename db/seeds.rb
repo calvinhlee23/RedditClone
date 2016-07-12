@@ -33,5 +33,5 @@ post1 = Post.new
 post1.author_id = paul.id
 post1.title = "Title of the First Post"
 post1.content = "This is the content of the first post. Yes, boring, I know"
-post1.sub_id= sub1.id
+post1.sub_ids= sub1.id
 post1.save!

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <form action="/subs" method="post">
-    <% if sub.persisted? %>
-    <input type="hidden" name="_method" value="patch">
-    <% end %>
+<% action_url = subbie.persisted? ? sub_url(subbie) : subs_url %>
+<% http_method = subbie.persisted? ? "PATCH" : "POST" %>
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= http_method %>">
     <%= auth_token %>
-    <label for "subs-title">Title:
-      <input id = "subs-title" type="text"
-      name="sub[title]" value= <%= "#{sub.title}" if sub.persisted? %>>
-    </label>
 
-    <label for="subs-description">Description:
-      <input id = "subs-descriptpion"
-      type="text" name="sub[]"
-      value= <%= "#{sub.description}" if sub.persisted? %>>
-    </label>
+    <label for "subs-title">Title: </label>
+      <input id = "subs-title" type="text" name="sub[title]" value= <%= "#{subbie.title}" %>>
+    <br>
 
-    <input type="submit"
-     value= <%= if sub.persisted?
-                "Submit This Sub"
-                else
-                "Update Sub"
-                end%>>
+    <label for="subs-description">Description: </label>
+      <input id = "subs-description"
+      type="text" name="sub[description]"
+      value= <%= "#{subbie.description}"%>>
+      <br>
+
+    <input type="submit" value= <%= if subbie.persisted?
+    "Update Sub"
+    else
+    "Submit This Sub"
+    end%>>
   </form>
 </html>

@@ -2,7 +2,7 @@ class SubsController < ApplicationController
     before_action :authorized?, only: [:edit, :update]
     before_action :consequences_of_not_logged_in
     def authorized?
-      unless self.moderator.id == @current_user.id
+      unless Sub.find_by_id(params[:id]).user_id == current_user.id
         flash[:errors] = "only moderators are only to modify subs"
       end
     end
