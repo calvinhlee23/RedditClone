@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     comment.author_id = current_user.id
 
     if comment.save
-      redirect_to post_url(comment.post)
+        redirect_to post_url(comment.post)
     else
       comment.errors.full_messages
     end

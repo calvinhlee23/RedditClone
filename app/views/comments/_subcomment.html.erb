@@ -1,0 +1,13 @@
+<% comment.child_comments.each do |cc| %>
+<ul>
+  <li>
+    <%= cc.content %> <br>
+    Author: <%= cc.author.email %>
+    <%= link_to( "rely", new_post_comment_url(post_id: comment.post_id, parent_id: cc.id))%>
+
+    <% unless cc.child_comments.empty? %>
+      <%= render "comments/subcomment",  comment: cc %>
+    <% end %>
+  </li>
+</ul>
+<% end %>
