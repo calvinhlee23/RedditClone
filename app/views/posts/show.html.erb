@@ -5,5 +5,15 @@
     <p>
       <%= @post.content %>
     </p>
+
+    <%= link_to "Submit a Comment", new_post_comment_url(@post) %>
+    <h3>Top Comments: </h3>
+    <ul>
+    <% @post.top_comments.each do |tc|%>
+      <li>  <%= tc.content %> <br>
+        comment author: <%= tc.author.email %>
+      </li>
+    <% end %>
+    </ul>
   </body>
 </html>

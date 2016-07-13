@@ -19,4 +19,16 @@ class Post < ActiveRecord::Base
     class_name: 'PostSub',
     foreign_key: :post_id
   )
+
+  has_many(
+    :comments, dependent: :destroy,
+    class_name: 'Comment',
+    foreign_key: :post_id
+  )
+
+  def top_comments
+    self.comments.where(parent_comment_id: nil)
+  end
+
+
 end
