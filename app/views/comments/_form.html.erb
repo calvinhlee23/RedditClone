@@ -11,8 +11,9 @@
     <textarea name="comment[content]"><%=comment.content%></textarea>
     <br>
 
-
+    <input type="hidden" name= "comment[parent_comment_id]" value = "<%= @parent_id %>">
     <input type="hidden" name="comment[post_id]" value="<%= @post_id %>">
+
     <input type="submit"
       value= <%= submit_value %>>
   </form>

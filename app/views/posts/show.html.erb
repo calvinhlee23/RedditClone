@@ -11,7 +11,18 @@
     <ul>
     <% @post.top_comments.each do |tc|%>
       <li>  <%= tc.content %> <br>
-        comment author: <%= tc.author.email %>
+        author: <%= tc.author.email %> <br>
+        <%= link_to "Details", comment_url(tc) %>
+        <br>
+        <h4>Sub-Comments:</h4>
+        <ul> <% tc.child_comments.each do |cc| %>
+          <li> <%= cc.content%> <br>
+              author: <%= cc.author.email %>
+          </li>
+          <% end %>
+          <br>
+        </ul>
+
       </li>
     <% end %>
     </ul>

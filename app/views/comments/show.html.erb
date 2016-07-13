@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Top Comment:</h1>
+    <%= @comment.content %> <br>
+    Author: <%= @comment.author.email %>
+    <br>
+    <br>
+    <%=link_to("Submit a SubComment!", new_post_comment_url(@comment.post, parent_id: @comment.id))%>
+
+    <h2>Sub-Comments:</h2>
+    <% @comment.child_comments.each do |cc| %>
+    <ul>
+      <li>
+        <%= cc.content %> <br>
+        Author: <%= cc.author.email %>
+      </li>
+    </ul>
+    <% end %>
+
+  </body>
+</html>

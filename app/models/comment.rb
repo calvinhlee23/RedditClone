@@ -12,4 +12,10 @@ class Comment < ActiveRecord::Base
     class_name: 'Post',
     foreign_key: :post_id
   )
+
+  has_many(
+    :child_comments,
+    class_name: 'Comment',
+    foreign_key: :parent_comment_id
+  )
 end

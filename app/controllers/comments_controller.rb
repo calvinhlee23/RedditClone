@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @post_id = params[:post_id]
+    @parent_id = params[:parent_id]
     render :new
   end
 
@@ -16,6 +17,11 @@ class CommentsController < ApplicationController
     else
       comment.errors.full_messages
     end
+  end
+
+  def show
+    @comment = Comment.find_by_id(params[:id])
+    render :show
   end
 
   private

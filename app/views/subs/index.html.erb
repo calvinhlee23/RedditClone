@@ -2,10 +2,11 @@
 <html>
   <body>
     <ul>
-      <% Sub.all.each do |sub| %>
+      <% Sub.all.order(:id).each do |sub| %>
         <li><%= link_to "#{sub.title}", sub_url(sub) %></li>
       <% end %>
     </ul>
+    <%= link_to "Submit a new Sub!", new_sub_url %>
     <%= link_to "Create a Post", new_post_url %>
   </body>
 

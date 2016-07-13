@@ -10,7 +10,9 @@
     <ol> <% @sub.posts.each do |post| %>
       <li><%= post.title%><br>
           <%= post.content %><br>
-          Submitted By: <%= post.author.email%>
+          Submitted By: <%= post.author.email%> <br>
+          Visit Post: <%= link_to "GO!", post_url(post) %>
+          ||
             <% if @current_user ==  post.author  %>
               <%= link_to "Edit Post", edit_post_url(post), method: :patch%>
             <% end %>
